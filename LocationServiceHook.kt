@@ -56,7 +56,7 @@ class LocationBinderProxyHookHandler(val base:IBinder):InvocationHandler{
                 method.invoke(base, null)
             }else{
                 method.invoke(base, *args)
-            }
+            }?:Unit
         }
     }
 
@@ -86,6 +86,6 @@ class LocationBinderHookHandler(base:IBinder, stubClass:Class<*> ):InvocationHan
             method.invoke(base, null)
         }else{
             method.invoke(base, *args)
-        }
+        }?:Unit
     }
 }
