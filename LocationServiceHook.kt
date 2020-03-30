@@ -53,7 +53,7 @@ class LocationBinderProxyHookHandler(val base:IBinder):InvocationHandler{
                     LocationBinderHookHandler(base, stub!!))
         }else {
             return if(args == null){
-                method.invoke(base, null)
+                method.invoke(base)
             }else{
                 method.invoke(base, *args)
             }?:Unit
@@ -83,7 +83,7 @@ class LocationBinderHookHandler(base:IBinder, stubClass:Class<*> ):InvocationHan
     override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any {
         MyLog.logI(TAG, "nethod: ${method!!.name}, args: $args", Throwable())
         return if(args == null){
-            method.invoke(base, null)
+            method.invoke(base)
         }else{
             method.invoke(base, *args)
         }?:Unit
